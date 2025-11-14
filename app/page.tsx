@@ -5,7 +5,7 @@ import styled from "styled-components";
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 import Wrapper from "./components/shared/Wrapper";
-import SearchForm from "./components/shared/SearchForm";
+import SimpleSearchForm from "./components/shared/SimpleSearchForm";
 import TestimonialsMarquee from "./components/shared/TestimonialsMarquee";
 import ScrollTopButton from "./components/shared/ScrollTopButton";
 import HeroSection from "./components/shared/HeroSection";
@@ -209,7 +209,7 @@ export default function Home() {
         subtitle="Más de 10,000 viajeros felices han confiado en nosotros. Planifica tu viaje perfecto con expertos que conocen cada destino."
         backgroundImage="/hero.jpg"
       >
-        <SearchForm
+        <SimpleSearchForm
           enableRealSearch={true}
           buttonText="Buscar Viajes"
           showWrapper={true}
