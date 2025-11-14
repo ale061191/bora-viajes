@@ -17,7 +17,7 @@ import { getAllOffers } from "./data/offers";
 
 const Section = styled.section`
   padding: 3rem 0;
-  background: var(--color-white);
+  background: transparent;
   text-align: center;
   max-width: 1100px;
   margin: 0 auto;
@@ -26,7 +26,7 @@ const Section = styled.section`
     max-width: 100vw;
   }
   @media (max-width: 600px) {
-    padding: 1rem 0.2rem;
+    padding: 1.5rem 1rem;
     max-width: 100vw;
   }
 `;
@@ -36,11 +36,21 @@ const SectionTitle = styled.h2`
   font-size: 2.2rem;
   color: var(--color-primary);
   margin-bottom: 0.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const SectionSubtitle = styled.p`
   color: var(--color-text-dark);
   margin-bottom: 2rem;
+  padding: 0 1rem;
+  
+  @media (max-width: 768px) {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const CardGrid = styled.div`
@@ -48,13 +58,17 @@ const CardGrid = styled.div`
   gap: 2rem;
   justify-content: center;
   flex-wrap: wrap;
+  padding: 0 1rem;
+  
   @media (max-width: 900px) {
-    gap: 1rem;
+    gap: 1.5rem;
   }
+  
   @media (max-width: 600px) {
     flex-direction: column;
     align-items: center;
-    gap: 0.7rem;
+    gap: 1rem;
+    padding: 0 0.5rem;
   }
 `;
 
@@ -63,13 +77,21 @@ const DestinationCardWrapper = styled.div`
   max-width: 320px;
   display: flex;
   justify-content: center;
+  
+  @media (max-width: 600px) {
+    max-width: 100%;
+  }
 `;
 
 
 const NewsletterSection = styled.section`
   background: #f7eafd;
-  padding: 2.5rem 0;
+  padding: 2.5rem 1rem;
   text-align: center;
+  
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const NewsletterForm = styled.form`
@@ -79,10 +101,12 @@ const NewsletterForm = styled.form`
   align-items: center;
   margin-top: 1rem;
   flex-wrap: wrap;
+  padding: 0 1rem;
   
   @media (max-width: 600px) {
     flex-direction: column;
     width: 100%;
+    padding: 0;
   }
 `;
 
@@ -90,7 +114,7 @@ const NewsletterInput = styled.input`
   background: var(--color-bg-light);
   border-radius: 1rem;
   border: 1px solid rgba(157, 74, 188, 0.2);
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   outline: none;
   font-family: var(--font-poppins);
   font-size: 1rem;
@@ -105,7 +129,7 @@ const NewsletterInput = styled.input`
   
   @media (max-width: 600px) {
     width: 100%;
-    max-width: 280px;
+    max-width: 100%;
   }
 `;
 
@@ -114,12 +138,18 @@ const NewsletterButton = styled.button`
   color: var(--color-white);
   border: none;
   border-radius: 8px;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  white-space: nowrap;
+  
   &:hover {
     background: #7c398f;
+  }
+  
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
