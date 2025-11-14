@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
@@ -502,7 +502,8 @@ const PaginationButton = styled.button<{ $active?: boolean }>`
 // Usar el alias Offer para compatibilidad con el código existente
 type Offer = OfferDetail;
 
-export default function OfertasPage() {
+// Componente que usa searchParams envuelto en Suspense
+function OfertasPageContent() {
   // Obtener todas las ofertas desde el archivo centralizado
   const offers = getAllOffers();
   const searchParams = useSearchParams();
@@ -912,5 +913,33 @@ export default function OfertasPage() {
       
       <ScrollTopButton $show={showScrollTop} />
     </Wrapper>
+  );
+}
+
+// Loading component para Suspense
+function OfertasPageLoading() {
+  return (
+    <Wrapper>
+      <Header currentPage="ofertas" />
+      <HeroSection
+        title="Ofertas Especiales"
+        subtitle="Aprovecha nuestros descuentos exclusivos y ahorra en tu próxima aventura"
+        backgroundImage="/hero.jpg"
+      >
+        <div style={{ padding: "2rem", textAlign: "center", color: "white" }}>
+          Cargando ofertas...
+        </div>
+      </HeroSection>
+      <Footer />
+    </Wrapper>
+  );
+}
+
+// Componente principal que envuelve con Suspense
+export default function OfertasPage() {
+  return (
+    <Suspense fallback={<OfertasPageLoading />}>
+      <OfertasPageContent />
+    </Suspense>
   );
 }
