@@ -9,16 +9,23 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource/great-vibes": "^5.2.8",
+    "@fontsource/poppins": "^5.2.7",
+    "@types/styled-components": "^5.1.35",
+    "next": "16.0.1",
     "react": "19.2.0",
+    "react-datepicker": "^8.9.0",
     "react-dom": "19.2.0",
-    "next": "16.0.1"
+    "react-icons": "^5.5.0",
+    "react-select": "^5.10.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.0.1"
+    "eslint-config-next": "16.0.1",
+    "typescript": "^5"
   }
 }
