@@ -184,21 +184,8 @@ const faqItems: FAQItemData[] = [
 ];
 
 export default function Home() {
-  // Estado del formulario de búsqueda
-  const [destino, setDestino] = useState("");
-  const [fechaInicio, setFechaInicio] = useState<Date | null>(null);
-  const [fechaFin, setFechaFin] = useState<Date | null>(null);
-  const [viajeros, setViajeros] = useState<number>(1);
   const [newsletter, setNewsletter] = useState("");
   const [showScrollTop, setShowScrollTop] = useState(false);
-  
-  // Función para manejar la búsqueda
-  const handleBuscar = (e: React.FormEvent) => {
-    e.preventDefault();
-    const fechaInicioStr = fechaInicio ? fechaInicio.toLocaleDateString() : "[Fecha inicio]";
-    const fechaFinStr = fechaFin ? fechaFin.toLocaleDateString() : "[Fecha fin]";
-    alert(`Buscando viajes a ${destino || "[Destino]"} para ${viajeros} viajero(s) desde ${fechaInicioStr} hasta ${fechaFinStr}`);
-  };
 
   // Función para manejar la suscripción al newsletter
   const handleNewsletter = (e: React.FormEvent) => {
@@ -223,15 +210,7 @@ export default function Home() {
         backgroundImage="/hero.jpg"
       >
         <SearchForm
-          destino={destino}
-          setDestino={setDestino}
-          fechaInicio={fechaInicio}
-          setFechaInicio={setFechaInicio}
-          fechaFin={fechaFin}
-          setFechaFin={setFechaFin}
-          viajeros={viajeros}
-          setViajeros={setViajeros}
-          onSubmit={handleBuscar}
+          enableRealSearch={true}
           buttonText="Buscar Viajes"
           showWrapper={true}
         />

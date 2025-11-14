@@ -2,26 +2,13 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import Select from "react-select";
-import { FaSearch, FaUser, FaCalendarAlt } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
 
 const SearchFormWrapper = styled.div`
-  width: 100vw;
-  max-width: 100vw;
-  margin-left: 50%;
-  transform: translateX(-50%);
-  position: relative;
-  z-index: 2;
+  width: 100%;
   display: flex;
   justify-content: center;
-  @media (max-width: 900px) {
-    padding: 0 1rem;
-  }
-  @media (max-width: 600px) {
-    padding: 0 0.5rem;
-  }
 `;
 
 const StyledSearchForm = styled.form`
@@ -36,13 +23,14 @@ const StyledSearchForm = styled.form`
   backdrop-filter: blur(12px);
   border: 1.5px solid rgba(255,255,255,0.35);
   width: 100%;
-  max-width: 1100px;
-  @media (max-width: 900px) {
+  max-width: 700px;
+  
+  @media (max-width: 768px) {
     flex-direction: column;
     gap: 0.7rem;
     padding: 1rem 1rem;
-    max-width: 100vw;
   }
+  
   @media (max-width: 600px) {
     padding: 0.7rem 0.5rem;
     border-radius: 1rem;
@@ -100,25 +88,21 @@ const SearchButton = styled.button`
     background: #7c398f;
   }
   
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     width: 100%;
     justify-content: center;
   }
 `;
 
-interface SearchFormProps {
+interface SimpleSearchFormProps {
   destino?: string;
   setDestino?: (value: string) => void;
-  fechaInicio?: Date | null;
-  setFechaInicio?: (date: Date | null) => void;
-  fechaFin?: Date | null;
-  setFechaFin?: (date: Date | null) => void;
   viajeros?: number;
   setViajeros?: (value: number) => void;
   onSubmit?: (e: React.FormEvent) => void;
   buttonText?: string;
   showWrapper?: boolean;
-  enableRealSearch?: boolean; // Nueva prop para habilitar búsqueda real
+  enableRealSearch?: boolean;
 }
 
 const viajeroOptions = [
@@ -128,33 +112,23 @@ const viajeroOptions = [
   { value: 4, label: "4+ viajeros" }
 ];
 
-export default function SearchForm({
+export default function SimpleSearchForm({
   destino: destinoProp,
   setDestino: setDestinoProp,
-  fechaInicio: fechaInicioProp,
-  setFechaInicio: setFechaInicioProp,
-  fechaFin: fechaFinProp,
-  setFechaFin: setFechaFinProp,
   viajeros: viajerosProp,
   setViajeros: setViajerosProp,
   onSubmit,
-  buttonText = "Buscar Viajes",
+  buttonText = "Buscar",
   showWrapper = true,
-  enableRealSearch = false
-}: SearchFormProps) {
+  enableRealSearch = true
+}: SimpleSearchFormProps) {
   const router = useRouter();
   const [internalDestino, setInternalDestino] = React.useState("");
-  const [internalFechaInicio, setInternalFechaInicio] = React.useState<Date | null>(null);
-  const [internalFechaFin, setInternalFechaFin] = React.useState<Date | null>(null);
   const [internalViajeros, setInternalViajeros] = React.useState<number>(1);
 
   // Usar estados internos o props según corresponda
   const destino = destinoProp !== undefined ? destinoProp : internalDestino;
   const setDestino = setDestinoProp || setInternalDestino;
-  const fechaInicio = fechaInicioProp !== undefined ? fechaInicioProp : internalFechaInicio;
-  const setFechaInicio = setFechaInicioProp || setInternalFechaInicio;
-  const fechaFin = fechaFinProp !== undefined ? fechaFinProp : internalFechaFin;
-  const setFechaFin = setFechaFinProp || setInternalFechaFin;
   const viajeros = viajerosProp !== undefined ? viajerosProp : internalViajeros;
   const setViajeros = setViajerosProp || setInternalViajeros;
 
@@ -179,65 +153,12 @@ export default function SearchForm({
         <FaSearch />
         <input
           type="text"
-          placeholder="¿A dónde?"
+          placeholder="¿A dónde quieres ir?"
           value={destino}
           onChange={e => setDestino(e.target.value)}
         />
       </SearchInput>
-      <SearchInput>
-        <FaCalendarAlt />
-        <DatePicker
-          selected={fechaInicio}
-          onChange={(date) => setFechaInicio(date)}
-          placeholderText="Fecha de inicio"
-          dateFormat="dd/MM/yyyy"
-          minDate={new Date()}
-          selectsStart
-          startDate={fechaInicio}
-          endDate={fechaFin}
-          customInput={
-            <input
-              style={{
-                border: "none",
-                background: "transparent",
-                outline: "none",
-                width: "100%",
-                fontSize: "1rem",
-                cursor: "pointer",
-                fontFamily: "var(--font-poppins)",
-                color: "var(--color-text-dark)"
-              }}
-            />
-          }
-        />
-      </SearchInput>
-      <SearchInput>
-        <FaCalendarAlt />
-        <DatePicker
-          selected={fechaFin}
-          onChange={(date) => setFechaFin(date)}
-          placeholderText="Fecha de fin"
-          dateFormat="dd/MM/yyyy"
-          minDate={fechaInicio || new Date()}
-          selectsEnd
-          startDate={fechaInicio}
-          endDate={fechaFin}
-          customInput={
-            <input
-              style={{
-                border: "none",
-                background: "transparent",
-                outline: "none",
-                width: "100%",
-                fontSize: "1rem",
-                cursor: "pointer",
-                fontFamily: "var(--font-poppins)",
-                color: "var(--color-text-dark)"
-              }}
-            />
-          }
-        />
-      </SearchInput>
+      
       <SearchInput>
         <FaUser />
         <Select
@@ -271,6 +192,7 @@ export default function SearchForm({
           isSearchable={false}
         />
       </SearchInput>
+      
       <SearchButton type="submit">
         <FaSearch />
         {buttonText}

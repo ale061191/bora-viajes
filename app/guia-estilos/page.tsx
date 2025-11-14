@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { FaSearch, FaUser, FaCalendarAlt, FaArrowUp } from "react-icons/fa";
 import Wrapper from "../components/shared/Wrapper";
 import SearchForm from "../components/shared/SearchForm";
+import SimpleSearchForm from "../components/shared/SimpleSearchForm";
 import FiltersBar from "../components/shared/FiltersBar";
 import { OffersGridComponent, OfferData } from "../components/shared/OfferCard";
 import TestimonialsMarquee, { TestimonialData } from "../components/shared/TestimonialsMarquee";
@@ -459,7 +460,41 @@ function ComponentsSection() {
       </Section>
 
       <Section>
-        <SectionTitle>2. FiltersBar (Barra de Filtros)</SectionTitle>
+        <SectionTitle>2. SimpleSearchForm (Formulario de Búsqueda Simplificado)</SectionTitle>
+        <Content>
+          <p style={{ marginBottom: "1rem", color: "var(--color-text-dark)" }}>
+            Versión simplificada del formulario de búsqueda con solo dos campos: destino y número de viajeros. Ideal para búsquedas rápidas.
+            <strong> Este componente realiza búsquedas reales en la página de ofertas.</strong>
+          </p>
+          <div style={{ background: "var(--color-bg-light)", padding: "2rem", borderRadius: "1rem" }}>
+            <SimpleSearchForm
+              showWrapper={false}
+              enableRealSearch={true}
+              buttonText="Buscar Ofertas"
+            />
+          </div>
+          <div style={{ marginTop: "1rem", background: "#f8f8f8", padding: "1rem", borderRadius: "0.5rem", fontSize: "0.9rem" }}>
+            <strong>Características:</strong>
+            <ul style={{ marginTop: "0.5rem", marginBottom: "0.5rem" }}>
+              <li>Solo 2 campos: Destino y Viajeros</li>
+              <li>Sin campos de fecha (más simple y rápido)</li>
+              <li>Navegación automática a /ofertas con parámetros de búsqueda</li>
+              <li>Filtrado en tiempo real de ofertas por destino</li>
+            </ul>
+            <strong>Uso:</strong>
+            <pre style={{ margin: "0.5rem 0 0 0", overflow: "auto" }}>{`import SimpleSearchForm from "../components/shared/SimpleSearchForm";
+
+<SimpleSearchForm
+  enableRealSearch={true}
+  buttonText="Buscar Ofertas"
+  showWrapper={true}
+/>`}</pre>
+          </div>
+        </Content>
+      </Section>
+
+      <Section>
+        <SectionTitle>3. FiltersBar (Barra de Filtros)</SectionTitle>
         <Content>
           <p style={{ marginBottom: "1rem", color: "var(--color-text-dark)" }}>
             Barra de filtros configurable con botones de categoría, temporada y rango de precios.
@@ -492,7 +527,7 @@ function ComponentsSection() {
       </Section>
 
       <Section>
-        <SectionTitle>3. OffersGrid (Grid de Ofertas)</SectionTitle>
+        <SectionTitle>4. OffersGrid (Grid de Ofertas)</SectionTitle>
         <Content>
           <p style={{ marginBottom: "1rem", color: "var(--color-text-dark)" }}>
             Grid responsivo de tarjetas de ofertas con efectos hover y diseño moderno.
@@ -521,7 +556,7 @@ const offers: OfferData[] = [
       </Section>
 
       <Section>
-        <SectionTitle>4. TestimonialsMarquee (Carrusel de Testimonios)</SectionTitle>
+        <SectionTitle>5. TestimonialsMarquee (Carrusel de Testimonios)</SectionTitle>
         <Content>
           <p style={{ marginBottom: "1rem", color: "var(--color-text-dark)" }}>
             Carrusel infinito de testimonios con animación automática y pausa al hover.

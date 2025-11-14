@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -138,6 +139,73 @@ const PageSubtitle = styled.p`
   margin-bottom: 2rem;
   opacity: 0.8;
   text-align: center;
+`;
+
+const SearchResultsBanner = styled.div`
+  background: linear-gradient(135deg, rgba(157, 74, 188, 0.1), rgba(157, 74, 188, 0.05));
+  border-left: 4px solid var(--color-primary);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+const SearchResultsText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+    font-family: var(--font-poppins);
+  }
+  
+  p {
+    font-size: 0.95rem;
+    color: var(--color-text-dark);
+    margin: 0;
+    opacity: 0.8;
+  }
+  
+  strong {
+    color: var(--color-primary);
+  }
+`;
+
+const ClearSearchButton = styled.button`
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: var(--font-poppins);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  &:hover {
+    background: #7c398f;
+  }
+  
+  svg {
+    font-size: 0.85rem;
+  }
 `;
 
 const FiltersContainer = styled.div`
@@ -437,6 +505,8 @@ type Offer = OfferDetail;
 export default function OfertasPage() {
   // Obtener todas las ofertas desde el archivo centralizado
   const offers = getAllOffers();
+  const searchParams = useSearchParams();
+  
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedSeason, setSelectedSeason] = useState<string | null>(null);
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>("all");
@@ -449,7 +519,27 @@ export default function OfertasPage() {
   const [fechaFin, setFechaFin] = useState<Date | null>(null);
   const [viajeros, setViajeros] = useState<number>(1);
   
+  // Estados de búsqueda desde URL
+  const [searchDestino, setSearchDestino] = useState<string>("");
+  const [searchViajeros, setSearchViajeros] = useState<number | null>(null);
+  
   const itemsPerPage = 6;
+
+  // Procesar parámetros de búsqueda desde URL
+  useEffect(() => {
+    const destinoParam = searchParams.get('destino');
+    const viajerosParam = searchParams.get('viajeros');
+    
+    if (destinoParam) {
+      setSearchDestino(destinoParam);
+      setDestino(destinoParam);
+    }
+    if (viajerosParam) {
+      const viajerosNum = parseInt(viajerosParam, 10);
+      setSearchViajeros(viajerosNum);
+      setViajeros(viajerosNum);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -468,6 +558,17 @@ export default function OfertasPage() {
   };
 
   const filteredOffers = offers.filter(offer => {
+    // Filtro de búsqueda por destino (desde URL)
+    if (searchDestino) {
+      const matchesDestination = offer.destination.toLowerCase().includes(searchDestino.toLowerCase()) ||
+                                 offer.title.toLowerCase().includes(searchDestino.toLowerCase());
+      if (!matchesDestination) return false;
+    }
+    
+    // Filtro de búsqueda por viajeros (desde URL) - informativo, no filtra pero se puede usar para recomendaciones
+    // Por ahora, todas las ofertas son válidas para cualquier número de viajeros
+    
+    // Filtros de categoría
     if (selectedType && offer.type !== selectedType) return false;
     if (selectedSeason && offer.season !== selectedSeason) return false;
     
@@ -490,6 +591,15 @@ export default function OfertasPage() {
     setSelectedSeason(null);
     setSelectedPriceRange("all");
     setCurrentPage(1);
+  };
+
+  const clearSearch = () => {
+    setSearchDestino("");
+    setSearchViajeros(null);
+    setDestino("");
+    setViajeros(1);
+    // Navegar a /ofertas sin parámetros
+    window.history.pushState({}, '', '/ofertas');
   };
 
   const hasActiveFilters = selectedType || selectedSeason || selectedPriceRange !== "all";
@@ -622,6 +732,24 @@ export default function OfertasPage() {
           <PageSubtitle>
             Filtra por categoría, temporada o presupuesto para encontrar la oferta perfecta
           </PageSubtitle>
+
+          {(searchDestino || searchViajeros) && (
+            <SearchResultsBanner>
+              <SearchResultsText>
+                <h3>🔍 Resultados de búsqueda</h3>
+                <p>
+                  {searchDestino && <span>Destino: <strong>{searchDestino}</strong></span>}
+                  {searchDestino && searchViajeros && <span> • </span>}
+                  {searchViajeros && <span>Viajeros: <strong>{searchViajeros}</strong></span>}
+                  {' '} • <strong>{filteredOffers.length}</strong> {filteredOffers.length === 1 ? 'oferta encontrada' : 'ofertas encontradas'}
+                </p>
+              </SearchResultsText>
+              <ClearSearchButton onClick={clearSearch}>
+                <FaTimes />
+                Limpiar búsqueda
+              </ClearSearchButton>
+            </SearchResultsBanner>
+          )}
 
           <FiltersContainer>
             <FilterButton
