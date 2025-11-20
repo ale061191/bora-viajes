@@ -1,19 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { useEffect } from "react";
 import styled from "styled-components";
 import Header from "./components/shared/Header";
 import Footer from "./components/shared/Footer";
 import Wrapper from "./components/shared/Wrapper";
-import SimpleSearchForm from "./components/shared/SimpleSearchForm";
 import TestimonialsMarquee from "./components/shared/TestimonialsMarquee";
-import ScrollTopButton from "./components/shared/ScrollTopButton";
 import HeroSection from "./components/shared/HeroSection";
-import { DestinationCard } from "./components/shared/DestinationCard";
-import { OffersGridComponent } from "./components/shared/OfferCard";
+import ServicesGrid from "./components/shared/ServicesGrid";
+import CTABanner from "./components/shared/CTABanner";
+import OfficesMap from "./components/shared/OfficesMap";
 import FAQ, { FAQItemData } from "./components/shared/FAQ";
 import { testimonials } from "./data/testimonials";
-import { getAllOffers } from "./data/offers";
 
 const Section = styled.section`
   padding: 3rem 0;
@@ -53,37 +50,6 @@ const SectionSubtitle = styled.p`
   }
 `;
 
-const CardGrid = styled.div`
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 0 1rem;
-  
-  @media (max-width: 900px) {
-    gap: 1.5rem;
-  }
-  
-  @media (max-width: 600px) {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    padding: 0 0.5rem;
-  }
-`;
-
-const DestinationCardWrapper = styled.div`
-  width: 100%;
-  max-width: 320px;
-  display: flex;
-  justify-content: center;
-  
-  @media (max-width: 600px) {
-    max-width: 100%;
-  }
-`;
-
-
 const NewsletterSection = styled.section`
   background: #f7eafd;
   padding: 2.5rem 1rem;
@@ -122,6 +88,7 @@ const NewsletterInput = styled.input`
   max-width: 100%;
   color: var(--color-text-dark);
   
+  
   &::placeholder {
     color: var(--color-text-dark);
     opacity: 0.7;
@@ -153,39 +120,6 @@ const NewsletterButton = styled.button`
   }
 `;
 
-
-// Datos de ejemplo
-const destinos = [
-  {
-    nombre: "Maldivas",
-    precio: "$1,800",
-    img: "/maldivas.jpg",
-    flag: "🇲🇻",
-    stats: "Más de 1,200 resorts • 18 paquetes exclusivos",
-    themeColor: "199 85% 42%",
-    href: "/ofertas"
-  },
-  {
-    nombre: "Kyoto",
-    precio: "$2,200",
-    img: "/kyoto.jpg",
-    flag: "🇯🇵",
-    stats: "Experiencias culturales únicas • 22 circuitos guiados",
-    themeColor: "29 70% 38%",
-    href: "/ofertas"
-  },
-  {
-    nombre: "Patagonia",
-    precio: "$1,800",
-    img: "/patagonia.jpg",
-    flag: "🇦🇷",
-    stats: "Aventuras al aire libre • 14 rutas escénicas",
-    themeColor: "210 56% 32%",
-    href: "/ofertas"
-  },
-];
-
-
 const faqItems: FAQItemData[] = [
   {
     question: "¿Cómo puedo reservar mi viaje?",
@@ -215,7 +149,6 @@ const faqItems: FAQItemData[] = [
 
 export default function Home() {
   const [newsletter, setNewsletter] = useState("");
-  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Función para manejar la suscripción al newsletter
   const handleNewsletter = (e: React.FormEvent) => {
@@ -224,61 +157,22 @@ export default function Home() {
     setNewsletter("");
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 200);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
   return (
     <Wrapper>
       <Header />
-      <HeroSection
-        title="Descubre el Mundo con Nosotros"
-        subtitle="Más de 10,000 viajeros felices han confiado en nosotros. Planifica tu viaje perfecto con expertos que conocen cada destino."
-        backgroundImage="/hero.jpg"
-      >
-        <SimpleSearchForm
-          enableRealSearch={true}
-          buttonText="Buscar Viajes"
-          showWrapper={true}
-        />
-      </HeroSection>
-      <Section id="destinos">
-        <SectionTitle className="great-vibes">Destinos que Enamoran</SectionTitle>
-        <SectionSubtitle>Los favoritos de nuestros viajeros. Experiencias únicas con los mejores precios garantizados.</SectionSubtitle>
-        <CardGrid>
-          {destinos.map((dest, index) => (
-            <DestinationCardWrapper key={dest.nombre || index}>
-              <DestinationCard
-                destination={{
-                  name: dest.nombre,
-                  price: dest.precio,
-                  image: dest.img,
-                  flag: dest.flag,
-                  stats: dest.stats,
-                  themeColor: dest.themeColor,
-                  href: dest.href
-                }}
-                ctaText="Explorar ahora"
-              />
-            </DestinationCardWrapper>
-          ))}
-        </CardGrid>
-      </Section>
-      <Section id="ofertas">
-        <SectionTitle className="great-vibes">Ofertas Irresistibles</SectionTitle>
-        <SectionSubtitle>Ahorra hasta 40% en paquetes seleccionados. ¡Plazas limitadas! Reserva ahora y asegura tu aventura.</SectionSubtitle>
-        <OffersGridComponent offers={getAllOffers().slice(0, 3)} />
-      </Section>
-      <TestimonialsMarquee 
+      <HeroSection />
+      <ServicesGrid />
+      <CTABanner text="¡Tu próxima aventura comienza aquí, viaja con nosotros!" />
+      <FAQ items={faqItems} />
+      <OfficesMap />
+      <TestimonialsMarquee
         testimonials={testimonials}
         title="Lo que dicen nuestros viajeros"
         subtitle="La satisfacción de nuestros clientes es nuestra mejor carta de presentación."
         showTitles={true}
+        rating={4.6}
+        reviewCount={2847}
       />
-      <FAQ items={faqItems} />
       <NewsletterSection>
         <SectionTitle className="great-vibes">¡No te pierdas nuestras ofertas exclusivas!</SectionTitle>
         <SectionSubtitle>Únete a más de 10,000 viajeros que reciben descuentos especiales, consejos de viaje y destinos increíbles directo en su bandeja de entrada.</SectionSubtitle>
@@ -294,7 +188,6 @@ export default function Home() {
         </NewsletterForm>
       </NewsletterSection>
       <Footer />
-      <ScrollTopButton $show={showScrollTop} />
     </Wrapper>
   );
 }

@@ -2,6 +2,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { TestimonialCard, TestimonialCardLinkStyled } from "./TestimonialCard";
+import RatingStars from "./RatingStars";
 
 const scroll = keyframes`
   0% {
@@ -97,6 +98,33 @@ const SectionSubtitle = styled.p`
   font-family: var(--font-poppins);
 `;
 
+const RatingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+`;
+
+const OverallRating = styled.div`
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-dark);
+`;
+
+const RatingInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+const ReviewCount = styled.div`
+  font-size: 0.9rem;
+  color: var(--color-text-dark);
+  opacity: 0.7;
+  margin-top: 0.25rem;
+`;
+
 export interface TestimonialData {
   author: {
     name: string;
@@ -112,13 +140,17 @@ interface TestimonialsMarqueeProps {
   title?: string;
   subtitle?: string;
   showTitles?: boolean;
+  rating?: number;
+  reviewCount?: number;
 }
 
 export default function TestimonialsMarquee({
   testimonials,
   title = "Lo que dicen nuestros viajeros",
   subtitle = "Experiencias reales de personas que confiaron en nosotros.",
-  showTitles = true
+  showTitles = true,
+  rating = 4.6,
+  reviewCount = 2847
 }: TestimonialsMarqueeProps) {
   return (
     <TestimonialsSection>
@@ -128,6 +160,13 @@ export default function TestimonialsMarquee({
           <SectionSubtitle>{subtitle}</SectionSubtitle>
         </>
       )}
+      <RatingContainer>
+        <OverallRating>{rating.toFixed(1)}</OverallRating>
+        <RatingInfo>
+          <RatingStars rating={rating} size={1.4} />
+          <ReviewCount>Basado en {reviewCount.toLocaleString()} reseñas</ReviewCount>
+        </RatingInfo>
+      </RatingContainer>
       <TestimonialsTrack>
         {[...Array(2)].map((_, setIndex) => (
           testimonials.map((testimonial, i) => {
@@ -145,7 +184,7 @@ export default function TestimonialsMarquee({
                 <TestimonialText>{testimonial.text}</TestimonialText>
               </>
             );
-            
+
             if (testimonial.href) {
               return (
                 <TestimonialCardLinkStyled
@@ -158,7 +197,7 @@ export default function TestimonialsMarquee({
                 </TestimonialCardLinkStyled>
               );
             }
-            
+
             return (
               <TestimonialCard key={`${setIndex}-${i}`}>
                 {cardContent}

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { FaChevronDown } from "react-icons/fa";
 
 const FAQSection = styled.section`
-  max-width: 900px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 4rem 2rem;
   
@@ -14,23 +14,60 @@ const FAQSection = styled.section`
 `;
 
 const FAQTitle = styled.h2`
-  font-family: var(--font-great-vibes);
-  font-size: 2.5rem;
-  color: var(--color-primary);
+  font-size: 2.2rem;
+  color: var(--color-text-dark);
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
   
   @media (max-width: 768px) {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
 `;
 
-const FAQSubtitle = styled.p`
-  text-align: center;
-  color: var(--color-text-dark);
-  font-size: 1.05rem;
-  margin-bottom: 3rem;
-  font-family: var(--font-poppins);
+const FAQContent = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+`;
+
+const FAQImageContainer = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  @media (max-width: 1024px) {
+    order: 2;
+  }
+`;
+
+const FAQImage = styled.img`
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  object-fit: contain;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
+`;
+
+const FAQListContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+  @media (max-width: 1024px) {
+    order: 1;
+  }
 `;
 
 const FAQList = styled.div`
@@ -40,16 +77,14 @@ const FAQList = styled.div`
 `;
 
 const FAQItem = styled.div<{ $isOpen: boolean }>`
-  background: white;
-  border-radius: 1rem;
-  border: 1px solid ${props => props.$isOpen ? 'var(--color-primary)' : 'rgba(157, 74, 188, 0.15)'};
+  background: ${props => props.$isOpen ? '#e6f2ff' : 'white'};
+  border-radius: 0.5rem;
+  border: 1px solid ${props => props.$isOpen ? 'var(--color-primary)' : '#e5e5e5'};
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: ${props => props.$isOpen ? '0 4px 20px rgba(157, 74, 188, 0.15)' : '0 2px 8px rgba(157, 74, 188, 0.08)'};
   
   &:hover {
     border-color: var(--color-primary);
-    box-shadow: 0 4px 20px rgba(157, 74, 188, 0.15);
   }
 `;
 
@@ -58,15 +93,15 @@ const FAQQuestion = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 1.75rem;
+  padding: 1.2rem 1.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
   font-family: var(--font-poppins);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
-  color: var(--color-text-dark);
+  color: ${props => props.theme?.$isOpen ? 'var(--color-primary)' : 'var(--color-text-dark)'};
   transition: color 0.3s ease;
   
   &:hover {
@@ -74,8 +109,8 @@ const FAQQuestion = styled.button`
   }
   
   @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 1.25rem 1.5rem;
+    font-size: 0.95rem;
+    padding: 1rem 1.25rem;
   }
 `;
 
@@ -83,11 +118,7 @@ const FAQIcon = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: ${props => props.$isOpen ? 'var(--color-primary)' : 'rgba(157, 74, 188, 0.1)'};
-  color: ${props => props.$isOpen ? 'white' : 'var(--color-primary)'};
+  color: var(--color-primary);
   transition: all 0.3s ease;
   flex-shrink: 0;
   margin-left: 1rem;
@@ -95,7 +126,7 @@ const FAQIcon = styled.div<{ $isOpen: boolean }>`
   svg {
     transform: ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
     transition: transform 0.3s ease;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 `;
 
@@ -104,21 +135,21 @@ const FAQAnswer = styled.div<{ $isOpen: boolean }>`
   opacity: ${props => props.$isOpen ? '1' : '0'};
   overflow: hidden;
   transition: all 0.4s ease;
-  padding: ${props => props.$isOpen ? '0 1.75rem 1.5rem 1.75rem' : '0 1.75rem'};
+  padding: ${props => props.$isOpen ? '0 1.5rem 1.2rem 1.5rem' : '0 1.5rem'};
   
   p {
     color: var(--color-text-dark);
     line-height: 1.7;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
     margin: 0;
     font-family: var(--font-poppins);
   }
   
   @media (max-width: 768px) {
-    padding: ${props => props.$isOpen ? '0 1.5rem 1.25rem 1.5rem' : '0 1.5rem'};
+    padding: ${props => props.$isOpen ? '0 1.25rem 1rem 1.25rem' : '0 1.25rem'};
     
     p {
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
   }
 `;
@@ -130,16 +161,16 @@ export interface FAQItemData {
 
 interface FAQProps {
   title?: string;
-  subtitle?: string;
   items: FAQItemData[];
+  imageUrl?: string;
 }
 
 export default function FAQ({ 
-  title = "Preguntas Frecuentes", 
-  subtitle = "Resolvemos tus dudas para que planifiques tu viaje con total confianza.",
-  items 
+  title = "PREGUNTAS FRECUENTES", 
+  items,
+  imageUrl = "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
 }: FAQProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -147,23 +178,29 @@ export default function FAQ({
 
   return (
     <FAQSection>
-      <FAQTitle className="great-vibes">{title}</FAQTitle>
-      <FAQSubtitle>{subtitle}</FAQSubtitle>
-      <FAQList>
-        {items.map((item, index) => (
-          <FAQItem key={index} $isOpen={openIndex === index}>
-            <FAQQuestion onClick={() => toggleFAQ(index)}>
-              <span>{item.question}</span>
-              <FAQIcon $isOpen={openIndex === index}>
-                <FaChevronDown />
-              </FAQIcon>
-            </FAQQuestion>
-            <FAQAnswer $isOpen={openIndex === index}>
-              <p>{item.answer}</p>
-            </FAQAnswer>
-          </FAQItem>
-        ))}
-      </FAQList>
+      <FAQTitle>{title}</FAQTitle>
+      <FAQContent>
+        <FAQImageContainer>
+          <FAQImage src={imageUrl} alt="FAQ illustration" />
+        </FAQImageContainer>
+        <FAQListContainer>
+          <FAQList>
+            {items.map((item, index) => (
+              <FAQItem key={index} $isOpen={openIndex === index}>
+                <FAQQuestion onClick={() => toggleFAQ(index)} theme={{ $isOpen: openIndex === index }}>
+                  <span>{item.question}</span>
+                  <FAQIcon $isOpen={openIndex === index}>
+                    <FaChevronDown />
+                  </FAQIcon>
+                </FAQQuestion>
+                <FAQAnswer $isOpen={openIndex === index}>
+                  <p>{item.answer}</p>
+                </FAQAnswer>
+              </FAQItem>
+            ))}
+          </FAQList>
+        </FAQListContainer>
+      </FAQContent>
     </FAQSection>
   );
 }
