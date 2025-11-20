@@ -140,7 +140,7 @@ const ContactBtn = styled.a`
 `;
 
 interface HeaderProps {
-  currentPage?: 'home' | 'contacto' | 'destinos' | 'ofertas' | 'sobre-nosotros' | 'guia-estilos';
+  currentPage?: 'home' | 'nosotros' | 'acceso-agencias' | 'contacto' | 'guia-estilos';
 }
 
 export default function Header({ currentPage = 'home' }: HeaderProps) {
@@ -193,9 +193,8 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
         {/* Desktop Navigation */}
         <DesktopNav>
           <NavLink href="/" $active={currentPage === 'home'}>Inicio</NavLink>
-          <NavLink href="/destinos" $active={currentPage === 'destinos'}>Destinos</NavLink>
-          <NavLink href="/ofertas" $active={currentPage === 'ofertas'}>Ofertas</NavLink>
-          <NavLink href="/sobre-nosotros" $active={currentPage === 'sobre-nosotros'}>Nuestra Historia</NavLink>
+          <NavLink href="/nosotros" $active={currentPage === 'nosotros'}>Nosotros</NavLink>
+          <NavLink href="/acceso-agencias" $active={currentPage === 'acceso-agencias'}>Acceso a Agencias</NavLink>
           <NavLink href="/contacto" $active={currentPage === 'contacto'}>Contacto</NavLink>
           <ContactBtn 
             href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
@@ -215,9 +214,8 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
       {/* Mobile Navigation */}
       <MobileNav $isOpen={mobileMenuOpen}>
         <NavLink href="/" $active={currentPage === 'home'} onClick={handleNavClick}>Inicio</NavLink>
-        <NavLink href="/destinos" $active={currentPage === 'destinos'} onClick={handleNavClick}>Destinos</NavLink>
-        <NavLink href="/ofertas" $active={currentPage === 'ofertas'} onClick={handleNavClick}>Ofertas</NavLink>
-        <NavLink href="/sobre-nosotros" $active={currentPage === 'sobre-nosotros'} onClick={handleNavClick}>Nuestra Historia</NavLink>
+        <NavLink href="/nosotros" $active={currentPage === 'nosotros'} onClick={handleNavClick}>Nosotros</NavLink>
+        <NavLink href="/acceso-agencias" $active={currentPage === 'acceso-agencias'} onClick={handleNavClick}>Acceso a Agencias</NavLink>
         <NavLink href="/contacto" $active={currentPage === 'contacto'} onClick={handleNavClick}>Contacto</NavLink>
         <ContactBtn 
           href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
