@@ -7,7 +7,7 @@ import Header from "../components/shared/Header";
 import Footer from "../components/shared/Footer";
 import Wrapper from "../components/shared/Wrapper";
 import ScrollTopButton from "../components/shared/ScrollTopButton";
-import HeroSection from "../components/shared/HeroSection";
+import HeroWithSearch from "../components/shared/HeroWithSearch";
 import SimpleSearchForm from "../components/shared/SimpleSearchForm";
 import { getAllOffers, type OfferDetail } from "../data/offers";
 
@@ -509,7 +509,7 @@ function OfertasPageContent() {
     <Wrapper>
       <Header currentPage="ofertas" />
       
-      <HeroSection
+      <HeroWithSearch
         title="Ofertas Especiales"
         subtitle="Aprovecha nuestros descuentos exclusivos y ahorra en tu próxima aventura"
         backgroundImage="/hero.jpg"
@@ -523,7 +523,7 @@ function OfertasPageContent() {
           buttonText="Buscar Ofertas"
           showWrapper={true}
         />
-      </HeroSection>
+      </HeroWithSearch>
       
       <PageContainer>
         <ContentWrapper>
@@ -719,7 +719,7 @@ function OfertasPageLoading() {
   return (
     <Wrapper>
       <Header currentPage="ofertas" />
-      <HeroSection
+      <HeroWithSearch
         title="Ofertas Especiales"
         subtitle="Aprovecha nuestros descuentos exclusivos y ahorra en tu próxima aventura"
         backgroundImage="/hero.jpg"
@@ -727,7 +727,7 @@ function OfertasPageLoading() {
         <div style={{ padding: "2rem", textAlign: "center", color: "white" }}>
           Cargando ofertas...
         </div>
-      </HeroSection>
+      </HeroWithSearch>
       <Footer />
     </Wrapper>
   );
