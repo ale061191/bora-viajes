@@ -1,6 +1,8 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FaPlane, FaHotel, FaUmbrellaBeach, FaBus, FaShip, FaSuitcase, FaLifeRing, FaUserFriends, FaHandHoldingHeart } from "react-icons/fa";
+import ServiceModal, { ServiceData } from "./ServiceModal";
 
 const ServicesSection = styled.section`
   padding: 4rem 0;
@@ -124,39 +126,109 @@ const ServiceButton = styled.button`
 interface Service {
     icon: React.ReactNode;
     title: string;
-    link: string;
+    description: string;
+    image: string;
 }
 
 const services: Service[] = [
-    { icon: <FaPlane />, title: "Boleteria", link: "/pasajeros" },
-    { icon: <FaHotel />, title: "Hoteles", link: "/hoteles" },
-    { icon: <FaUmbrellaBeach />, title: "Atracciones", link: "/atracciones" },
-    { icon: <FaBus />, title: "Traslados", link: "/traslados" },
-    { icon: <FaShip />, title: "Circuitos", link: "/cruceros" },
-    { icon: <FaSuitcase />, title: "Paquetes", link: "/paquetes" },
-    { icon: <FaLifeRing />, title: "Asistencia", link: "/asistencia" },
-    { icon: <FaUserFriends />, title: "Asesoramiento", link: "/asesoramiento" },
-    { icon: <FaHandHoldingHeart />, title: "Otros Servicios", link: "/otros-servicios" },
+    { 
+        icon: <FaPlane />, 
+        title: "Boleteria", 
+        description: "Acceso a boletos aéreos nacionales e internacionales con todas las aerolíneas, buscando las mejores opciones de vuelo según el presupuesto del cliente.",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80"
+    },
+    { 
+        icon: <FaHotel />, 
+        title: "Hoteles", 
+        description: "Amplia gama de alojamientos a nivel mundial, con tarifas competitivas gracias a alianzas estratégicas con una red de hoteles.",
+        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80"
+    },
+    { 
+        icon: <FaUmbrellaBeach />, 
+        title: "Atracciones", 
+        description: "Creación de itinerarios a medida que incluyen entradas VIP para parques temáticos y tours exclusivos en destinos variados.",
+        image: "https://images.unsplash.com/photo-1594882645126-14020914d58d?w=800&q=80"
+    },
+    { 
+        icon: <FaBus />, 
+        title: "Traslados", 
+        description: "Servicios de traslado cómodos y seguros, así como alquiler de coches y transporte local.",
+        image: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80"
+    },
+    { 
+        icon: <FaShip />, 
+        title: "Circuitos", 
+        description: "Ofrecen circuitos internacionales para amantes de la aventura y la cultura, con una variedad de destinos impresionantes.",
+        image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=800&q=80"
+    },
+    { 
+        icon: <FaSuitcase />, 
+        title: "Paquetes", 
+        description: "Diseño de paquetes de viaje personalizados para asegurar experiencias únicas y memorables.",
+        image: "https://images.unsplash.com/photo-1488085061387-422e29b40080?w=800&q=80"
+    },
+    { 
+        icon: <FaLifeRing />, 
+        title: "Asistencia", 
+        description: "Servicio de asistencia personalizada para garantizar que cada aspecto del viaje sea sin contratiempos.",
+        image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&q=80"
+    },
+    { 
+        icon: <FaUserFriends />, 
+        title: "Asesoramiento", 
+        description: "Asesoramiento a medida para crear itinerarios adaptados a las preferencias y deseos del viajero.",
+        image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80"
+    },
+    { 
+        icon: <FaHandHoldingHeart />, 
+        title: "Otros Servicios", 
+        description: "Variedad de servicios turísticos adicionales para satisfacer todas las necesidades del cliente.",
+        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80"
+    },
 ];
 
 const ServicesGrid: React.FC = () => {
+    const [selectedService, setSelectedService] = useState<ServiceData | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleServiceClick = (service: Service) => {
+        setSelectedService({
+            title: service.title,
+            description: service.description,
+            image: service.image
+        });
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedService(null), 300);
+    };
+
     return (
-        <ServicesSection id="servicios">
-            <Container>
-                <SectionTitle>NUESTROS SERVICIOS</SectionTitle>
-                <Grid>
-                    {services.map((service, index) => (
-                        <ServiceCard key={index}>
-                            <IconWrapper>{service.icon}</IconWrapper>
-                            <ServiceTitle>{service.title}</ServiceTitle>
-                            <ServiceButton onClick={() => window.location.href = service.link}>
-                                Leer mas
-                            </ServiceButton>
-                        </ServiceCard>
-                    ))}
-                </Grid>
-            </Container>
-        </ServicesSection>
+        <>
+            <ServicesSection id="servicios">
+                <Container>
+                    <SectionTitle>NUESTROS SERVICIOS</SectionTitle>
+                    <Grid>
+                        {services.map((service, index) => (
+                            <ServiceCard key={index}>
+                                <IconWrapper>{service.icon}</IconWrapper>
+                                <ServiceTitle>{service.title}</ServiceTitle>
+                                <ServiceButton onClick={() => handleServiceClick(service)}>
+                                    Leer mas
+                                </ServiceButton>
+                            </ServiceCard>
+                        ))}
+                    </Grid>
+                </Container>
+            </ServicesSection>
+            <ServiceModal 
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                service={selectedService}
+            />
+        </>
     );
 };
 
