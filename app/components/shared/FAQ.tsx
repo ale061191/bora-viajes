@@ -88,7 +88,7 @@ const FAQItem = styled.div<{ $isOpen: boolean }>`
   }
 `;
 
-const FAQQuestion = styled.button`
+const FAQQuestion = styled.button<{ $isOpen: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -101,7 +101,7 @@ const FAQQuestion = styled.button`
   font-family: var(--font-poppins);
   font-size: 1rem;
   font-weight: 600;
-  color: ${props => props.theme?.$isOpen ? 'var(--color-primary)' : 'var(--color-text-dark)'};
+  color: ${props => props.$isOpen ? 'var(--color-primary)' : 'var(--color-text-dark)'};
   transition: color 0.3s ease;
   
   &:hover {
@@ -187,7 +187,7 @@ export default function FAQ({
           <FAQList>
             {items.map((item, index) => (
               <FAQItem key={index} $isOpen={openIndex === index}>
-                <FAQQuestion onClick={() => toggleFAQ(index)} theme={{ $isOpen: openIndex === index }}>
+                <FAQQuestion $isOpen={openIndex === index} onClick={() => toggleFAQ(index)}>
                   <span>{item.question}</span>
                   <FAQIcon $isOpen={openIndex === index}>
                     <FaChevronDown />
