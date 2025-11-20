@@ -14,9 +14,9 @@ const StarsContainer = styled.div`
   gap: 0.25rem;
 `;
 
-const Star = styled.span<{ $filled: number }>`
+const Star = styled.span<{ $filled: number; $size: string }>`
   color: ${props => props.$filled > 0 ? '#FFD700' : '#E0E0E0'};
-  font-size: ${props => props.theme?.size || '1.2rem'};
+  font-size: ${props => props.$size};
   position: relative;
   display: inline-block;
   
@@ -58,7 +58,7 @@ const RatingStars: React.FC<RatingStarsProps> = ({
             <Star
                 key={i}
                 $filled={filled}
-                theme={{ size: `${size}rem` }}
+                $size={`${size}rem`}
             />
         );
     }
