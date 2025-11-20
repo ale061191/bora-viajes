@@ -165,6 +165,7 @@ export default function Home() {
       <CTABanner text="¡Tu próxima aventura comienza aquí, viaja con nosotros!" />
       <FAQ items={faqItems} />
       <OfficesMap />
+      <CTABanner text="¡Los viajes se viven 3 veces: al planearlo, al vivirlo y al recordarlo!" />
       <TestimonialsMarquee
         testimonials={testimonials}
         title="Lo que dicen nuestros viajeros"
