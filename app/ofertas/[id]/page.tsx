@@ -495,7 +495,7 @@ export default function OfferDetailPage({ params }: OfferDetailPageProps) {
   if (!offer) {
     return (
       <Wrapper>
-        <Header currentPage="ofertas" />
+        <Header />
         <PageContainer>
           <div style={{ padding: "4rem 2rem", textAlign: "center" }}>
             <h1 style={{ color: "var(--color-primary)", fontFamily: "var(--font-poppins)" }}>
@@ -537,7 +537,7 @@ export default function OfferDetailPage({ params }: OfferDetailPageProps) {
 
   return (
     <Wrapper>
-      <Header currentPage="ofertas" />
+      <Header />
       <PageContainer>
         <HeroSection>
           <HeroTitle className="great-vibes">{offer.heroTitle}</HeroTitle>

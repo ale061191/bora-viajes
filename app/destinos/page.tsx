@@ -448,7 +448,7 @@ export default function DestinosPage() {
 
   return (
     <Wrapper>
-      <Header currentPage="destinos" />
+      <Header />
       <PageContainer>
         <ContentWrapper>
           <PageTitle>Find Your Next Adventure</PageTitle>

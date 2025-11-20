@@ -507,7 +507,7 @@ function OfertasPageContent() {
 
   return (
     <Wrapper>
-      <Header currentPage="ofertas" />
+      <Header />
       
       <HeroWithSearch
         title="Ofertas Especiales"
@@ -718,7 +718,7 @@ function OfertasPageContent() {
 function OfertasPageLoading() {
   return (
     <Wrapper>
-      <Header currentPage="ofertas" />
+      <Header />
       <HeroWithSearch
         title="Ofertas Especiales"
         subtitle="Aprovecha nuestros descuentos exclusivos y ahorra en tu próxima aventura"

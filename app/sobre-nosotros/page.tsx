@@ -428,7 +428,7 @@ export default function SobreNosotrosPage() {
 
   return (
     <Wrapper>
-      <Header currentPage="sobre-nosotros" />
+      <Header />
       
       <Hero>
         <HeroOverlay />
