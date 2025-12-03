@@ -161,16 +161,16 @@ export default function ServiceModal({ isOpen, onClose, service }: ServiceModalP
         <CloseButton onClick={onClose}>
           <FaTimes />
         </CloseButton>
-        
+
         <ModalHeader>
           <ModalTitle>{service.title}</ModalTitle>
           <ModalDescription>{service.description}</ModalDescription>
           <ModalImage src={service.image} alt={service.title} />
         </ModalHeader>
-        
+
         <ModalActions>
           <WhatsAppButton
-            href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20sus%20servicios"
+            href="https://wa.me/584124265960?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20sus%20servicios"
             target="_blank"
             rel="noopener noreferrer"
           >

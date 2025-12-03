@@ -280,7 +280,7 @@ export default function ContactPage() {
             <IconWrapper><FaPhone /></IconWrapper>
             <DetailContent>
               <h3>Llámanos</h3>
-              <p><a href="tel:+584126851090">+58 412 685 1090</a></p>
+              <p><a href="tel:+584124265960">+58 412 426 5960</a></p>
             </DetailContent>
           </ContactDetail>
 
@@ -288,7 +288,7 @@ export default function ContactPage() {
             <IconWrapper><FaEnvelope /></IconWrapper>
             <DetailContent>
               <h3>Escríbenos</h3>
-              <p><a href="mailto:info@boraviajes.com">info@boraviajes.com</a></p>
+              <p><a href="mailto:boraviajesvzla@gmail.com">boraviajesvzla@gmail.com</a></p>
             </DetailContent>
           </ContactDetail>
 
@@ -296,14 +296,15 @@ export default function ContactPage() {
             <IconWrapper><FaMapMarkerAlt /></IconWrapper>
             <DetailContent>
               <h3>Visítanos</h3>
-              <p>Av. Principal de Lechería, Centro Comercial Caribbean Mall, Local 25.</p>
+              <p>Guasdualito, estado Apure, carrera Rondón, entre calle Sucre y Cedeño, edificio Victoria.</p>
+              <p style={{ marginTop: '0.5rem' }}>Caracas.</p>
             </DetailContent>
           </ContactDetail>
 
           <SocialLinks>
-            <SocialBtn href="#" target="_blank"><FaInstagram /></SocialBtn>
+            <SocialBtn href="https://www.instagram.com/boraviajes/" target="_blank"><FaInstagram /></SocialBtn>
             <SocialBtn href="#" target="_blank"><FaFacebookF /></SocialBtn>
-            <SocialBtn href="https://wa.me/584126851090" target="_blank"><FaWhatsapp /></SocialBtn>
+            <SocialBtn href="https://wa.me/584124265960" target="_blank"><FaWhatsapp /></SocialBtn>
           </SocialLinks>
         </InfoSection>
 

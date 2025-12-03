@@ -189,15 +189,15 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
     <HeaderStyled>
       <HeaderContainer>
         <Logo>Bora Viajes</Logo>
-        
+
         {/* Desktop Navigation */}
         <DesktopNav>
           <NavLink href="/" $active={currentPage === 'home'}>Inicio</NavLink>
           <NavLink href="/nosotros" $active={currentPage === 'nosotros'}>Nosotros</NavLink>
           <NavLink href="/acceso-agencias" $active={currentPage === 'acceso-agencias'}>Acceso a Agencias</NavLink>
           <NavLink href="/contacto" $active={currentPage === 'contacto'}>Contacto</NavLink>
-          <ContactBtn 
-            href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
+          <ContactBtn
+            href="https://wa.me/584124265960?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -217,8 +217,8 @@ export default function Header({ currentPage = 'home' }: HeaderProps) {
         <NavLink href="/nosotros" $active={currentPage === 'nosotros'} onClick={handleNavClick}>Nosotros</NavLink>
         <NavLink href="/acceso-agencias" $active={currentPage === 'acceso-agencias'} onClick={handleNavClick}>Acceso a Agencias</NavLink>
         <NavLink href="/contacto" $active={currentPage === 'contacto'} onClick={handleNavClick}>Contacto</NavLink>
-        <ContactBtn 
-          href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
+        <ContactBtn
+          href="https://wa.me/584124265960?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleNavClick}

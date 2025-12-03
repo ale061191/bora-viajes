@@ -153,7 +153,8 @@ export default function Home() {
   // Función para manejar la suscripción al newsletter
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`¡Gracias por suscribirte, ${newsletter}!`);
+    if (!newsletter) return;
+    window.location.href = `mailto:boraviajesvzla@gmail.com?subject=Quiero ofertas&body=Hola, quiero suscribirme a las ofertas exclusivas con mi correo: ${newsletter}`;
     setNewsletter("");
   };
 
