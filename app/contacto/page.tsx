@@ -306,6 +306,8 @@ export default function ContactPage() {
     e.preventDefault();
     // Simulate form submission
     setIsSubmitted(true);
+    // Reset the form
+    (e.target as HTMLFormElement).reset();
     // Reset after a few seconds if desired, or leave it
     setTimeout(() => setIsSubmitted(false), 5000);
   };
