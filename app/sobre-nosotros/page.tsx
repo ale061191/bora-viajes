@@ -429,7 +429,7 @@ export default function SobreNosotrosPage() {
   return (
     <Wrapper>
       <Header />
-      
+
       <Hero>
         <HeroOverlay />
         <HeroContent>
@@ -439,13 +439,13 @@ export default function SobreNosotrosPage() {
           </HeroSubtitle>
         </HeroContent>
       </Hero>
-      
+
       <PageContainer>
         <ContentSection>
           <IntroText>
-            Nuestra agencia nació de una pasión incontrolable por explorar, descubrir y 
-            conectar. Creemos que viajar es más que visitar nuevos lugares: es una oportunidad 
-            para enriquecer el alma, crear recuerdos imborrables y comprender mejor el mundo 
+            Nuestra agencia nació de una pasión incontrolable por explorar, descubrir y
+            conectar. Creemos que viajar es más que visitar nuevos lugares: es una oportunidad
+            para enriquecer el alma, crear recuerdos imborrables y comprender mejor el mundo
             que compartimos.
           </IntroText>
         </ContentSection>
@@ -472,8 +472,8 @@ export default function SobreNosotrosPage() {
             <MissionTitle>Nuestra Misión</MissionTitle>
             <MissionQuote>
               <QuoteText>
-                "Diseñar viajes que transformen, conecten y dejen una huella positiva. Buscamos 
-                inspirar la curiosidad y el respeto por nuestro planeta, creando experiencias que 
+                "Diseñar viajes que transformen, conecten y dejen una huella positiva. Buscamos
+                inspirar la curiosidad y el respeto por nuestro planeta, creando experiencias que
                 perduren toda la vida."
               </QuoteText>
             </MissionQuote>
@@ -497,8 +497,8 @@ export default function SobreNosotrosPage() {
           <CTASubtitle>
             Permítenos ser parte de tu historia. Juntos, crearemos el viaje que siempre has soñado.
           </CTASubtitle>
-          <CTAButton 
-            href="https://wa.me/584126851090?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
+          <CTAButton
+            href="https://wa.me/584124265960?text=Hola,%20estoy%20interesado%20en%20informacion%20sobre%20ofertas%20y%20paquetes%20de%20viaje"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -510,7 +510,7 @@ export default function SobreNosotrosPage() {
           © 2024 Agencia de Viajes Aventuras. Todos los derechos reservados.
         </FooterNote>
       </PageContainer>
-      
+
       <Footer />
     </Wrapper>
   );

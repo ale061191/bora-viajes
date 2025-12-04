@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import styled from "styled-components";
+import { FaInstagram, FaFacebookF, FaWhatsapp } from "react-icons/fa";
 
 const FooterStyled = styled.footer`
   background: var(--color-text-dark);
@@ -44,22 +45,30 @@ export default function Footer() {
       <NavLinks>
         <a href="/">Inicio</a>
         <span>|</span>
-        <a href="/destinos">Destinos</a>
+        <a href="/nosotros">Nosotros</a>
         <span>|</span>
-        <a href="/ofertas">Ofertas</a>
-        <span>|</span>
-        <a href="/sobre-nosotros">Nuestra Historia</a>
+        <a href="/acceso-agencias">Acceso a Agencias</a>
         <span>|</span>
         <a href="/contacto">Contacto</a>
       </NavLinks>
-      <div style={{ marginBottom: "1rem" }}>
-        <b>Contacto:</b> hola@boraviajes.com &nbsp;|&nbsp; +1 (234) 567-890
+      <div style={{ marginBottom: "1rem", display: "flex", flexDirection: "column", gap: "0.5rem", alignItems: "center" }}>
+        <div>
+          <b>Contacto:</b> <a href="mailto:boraviajesvzla@gmail.com" style={{ color: "inherit", textDecoration: "none" }}>boraviajesvzla@gmail.com</a> &nbsp;|&nbsp; <a href="tel:+584124265960" style={{ color: "inherit", textDecoration: "none" }}>+58 412 426 5960</a>
+        </div>
+        <div style={{ fontSize: "0.9rem", opacity: 0.9 }}>
+          Guasdualito, estado Apure &nbsp;•&nbsp; Caracas
+        </div>
       </div>
       <div style={{ marginBottom: "1rem" }}>
-        <b>Síguenos:</b> <span style={{ fontSize: "1.2rem" }}>🐦 📘 📸</span>
+        <b>Síguenos:</b>
+        <span style={{ fontSize: "1.2rem", marginLeft: "0.5rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <a href="https://www.instagram.com/boraviajes/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit", margin: "0 0.3rem", display: "flex", alignItems: "center" }}><FaInstagram /></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit", margin: "0 0.3rem", display: "flex", alignItems: "center" }}><FaFacebookF /></a>
+          <a href="https://wa.me/584124265960" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none", color: "inherit", margin: "0 0.3rem", display: "flex", alignItems: "center" }}><FaWhatsapp /></a>
+        </span>
       </div>
       <div style={{ fontSize: "0.85rem", color: "#ccc" }}>
-        © 2024 Bora Viajes. Todos los derechos reservados. | Términos y Condiciones | Política de Privacidad
+        © {new Date().getFullYear()} Bora Viajes. Todos los derechos reservados.
       </div>
     </FooterStyled>
   );
